@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "packageManager": "pnpm@10.33.2",
   "scripts": {
     "dev": "astro dev --host 127.0.0.1 --port 8788",
     "build": "astro check && astro build",
@@ -16,5 +17,10 @@
     "typescript": "latest",
     "wrangler": "latest"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "pnpm": {
+    "overrides": {
+      "yaml": "2.9.0"
+    }
+  }
 }
