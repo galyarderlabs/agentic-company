@@ -1,0 +1,190 @@
+## Tools are hands
+
+An agent without tools can only talk. An agent with tools can inspect, edit, test, deploy, schedule, message, browse, and verify.
+
+The point is not tool count. The point is correct routing and proof.
+
+## Tool taxonomy
+
+| Tool class | Use | Verification |
+|---|---|---|
+| File tools | read, search, write, patch local artifacts | Read back files or inspect diff. |
+| Terminal | build, test, run commands, inspect system state | Exit code and relevant output. |
+| Browser | interactive web work, visual QA, account/session workflows | Screenshot, DOM state, or live page proof. |
+| Web search/extract | current external facts and source extraction | Source URL and extracted content. |
+| Memory tools | retain and recall durable facts | Recall result and memory policy match. |
+| Cron/background | recurring jobs and long-running processes | Job list/status/log/output. |
+| Messaging | send reports or media to approved targets | Target, message ID, or platform delivery proof. |
+| MCP | structured external systems: docs, tasks, notes, control planes | Tool call result against the live server. |
+
+## Native toolset lifecycle
+
+Use Hermes CLI to inspect and control native toolsets:
+
+```bash
+hermes tools
+hermes tools list
+hermes tools enable <toolset>
+hermes tools disable <toolset>
+```
+
+Operational rules:
+
+- enable the smallest toolset that can do the job;
+- do not expose browser/account/social tools to profiles that do not need them;
+- terminal/file tools require stronger verification discipline because they can modify local state;
+- public messaging tools require approval gates before external send/share/post actions.
+
+## MCP layer examples
+
+Useful MCP servers:
+
+- Context7 for current library docs;
+- NotebookLM for source notebooks;
+- Paperclip for company control state;
+- Linear for issues/projects;
+- Notion for docs/databases;
+- Google Workspace for Gmail/Drive/Calendar/Docs/Sheets depending on setup.
+
+## MCP lifecycle commands
+
+Use Hermes MCP commands instead of treating MCP as a static config blob:
+
+```bash
+hermes mcp add <name> --url <remote-http-url>
+hermes mcp add <name> --command <stdio-command>
+hermes mcp list
+hermes mcp status
+hermes mcp login <name>
+hermes mcp remove <name>
+```
+
+After adding a server, run a minimal read-only call through the exposed tool before claiming the integration works.
+
+## Remote MCP OAuth pattern
+
+Hosted MCP servers often require OAuth. Configure the server with OAuth auth and log in per Hermes profile:
+
+```yaml
+mcp_servers:
+  notion:
+    url: https://mcp.notion.com/mcp
+    auth: oauth
+  linear:
+    url: https://mcp.linear.app/mcp
+    auth: oauth
+```
+
+Then authenticate:
+
+```bash
+hermes mcp login notion
+hermes mcp login linear
+hermes mcp status
+```
+
+Important distinctions:
+
+- MCP server configured ≠ MCP authenticated;
+- OAuth login success ≠ workspace/page/project permission granted;
+- tool appears in schema ≠ the account has access to the target resource;
+- read access ≠ write/share/delete approval.
+
+## Capability checks
+
+Before saying a capability exists, verify it:
+
+- list tool availability;
+- run a small read-only call;
+- check auth status where possible;
+- inspect error messages;
+- document fallback path.
+
+Proof examples:
+
+| Capability claim | Minimum proof |
+|---|---|
+| Tools are enabled | `hermes tools list` shows target toolset. |
+| MCP is available | `hermes mcp status` plus one read-only tool result. |
+| Notion works | Fetch one shared page/database. |
+| Linear works | List or fetch one accessible issue/project. |
+| Browser works | Open page and inspect snapshot/screenshot. |
+| Google works | Read-only profile-specific Gmail/Drive/Calendar check. |
+
+## Tool-grounded response rule
+
+Map claim type to proof:
+
+| Claim | Proof |
+|---|---|
+| file content | read file |
+| system state | terminal command |
+| current external fact | web search/extract |
+| account state | platform-specific status or owner-state check |
+| MCP integration | actual MCP call |
+| source material | extract/read transcript/source |
+| completion | fresh verification command |
+
+## Cron and background tools
+
+Cron is an operational tool, not just a reminder system.
+
+Use it for:
+
+- daily pulse;
+- weekly stale-task audit;
+- health checks;
+- API/feed watchdogs;
+- cost and usage alerts;
+- memory/skill review queues.
+
+Key concepts:
+
+- `script`: collect data before the agent reasons;
+- `no_agent`: deliver script stdout directly, stay silent on empty stdout;
+- `deliver`: target platform/channel;
+- `workdir`: project context;
+- `context_from`: chain previous job output.
+
+Cron jobs must be self-contained. Do not rely on the current chat context.
+
+## Failure modes
+
+Common operating risks:
+
+- treating memory as current system state;
+- trusting subagent reports without checking output;
+- using browser metadata instead of source transcript;
+- declaring account login from cookie file existence;
+- saying deploy succeeded without fetching the public URL;
+- adding tools without risk gates;
+- `401` from remote MCP treated as server outage when OAuth is missing;
+- OAuth success treated as API readiness;
+- tool listed in schema treated as permission to write;
+- gateway running treated as successful message delivery;
+- cron created without a delivery target or self-contained prompt.
+
+## Custom MCP server rule
+
+Build a custom MCP server only when:
+
+- the action repeats;
+- the API is stable;
+- auth can be handled safely;
+- outputs can be structured;
+- least privilege is possible.
+
+Otherwise use CLI/script wrappers first.
+
+## Approval boundary
+
+Tool availability never grants action permission by itself.
+
+Require explicit approval for:
+
+- external sends, shares, invites, posts, replies, likes, follows;
+- destructive operations;
+- production deploy/restart/security changes;
+- money, billing, wallet, subscription, or API-spend increases;
+- credential recovery or permission changes;
+- public docs publishing when private material could leak.

@@ -1,0 +1,34 @@
+---
+import { masthead, navLinks, navText } from '../data/siteI18n';
+---
+<header class="topbar">
+  <div class="masthead" aria-label="Publication metadata / metadata publikasi">
+    <span class="mast-issue"><b>ACG / 2026</b><span class="mast-sep"> · </span><span class="mast-guide" data-i18n-en>agentic company operating guide</span><span class="mast-guide" data-i18n-id>panduan operasi agentic company</span></span>
+    <span><span data-i18n-en>{masthead.scope.en}</span><span data-i18n-id>{masthead.scope.id}</span></span>
+    <span class="locale-switch" aria-label="Language switcher / pengubah bahasa">
+      <button type="button" data-locale-select="en" aria-pressed="true">EN</button>
+      <span>·</span>
+      <button type="button" data-locale-select="id" aria-pressed="false">ID</button>
+    </span>
+  </div>
+
+  <nav class="nav" aria-label="Main navigation / navigasi utama">
+    <a class="brand-lockup" href="/" aria-label="Galyarder Labs home / beranda Galyarder Labs">
+      <span class="brand-logo" aria-hidden="true"><img src="/logo.png" alt="" /></span>
+      <span class="brand-text">
+        <strong>Galyarder Labs</strong>
+        <span><span data-i18n-en>{navText.brandSubtitle.en}</span><span data-i18n-id>{navText.brandSubtitle.id}</span></span>
+      </span>
+    </a>
+
+    <div class="nav-links" aria-label="Primary sections / bagian utama">
+      {navLinks.map((link) => <a href={link.href}><span data-i18n-en>{link.label.en}</span><span data-i18n-id>{link.label.id}</span><small>{link.code}</small></a>)}
+    </div>
+
+    <div class="nav-actions">
+      <a class="nav-cta" href="/docs/build-roadmap/">
+        <span data-i18n-en>{navText.startBuild.en}</span><span data-i18n-id>{navText.startBuild.id}</span>
+      </a>
+    </div>
+  </nav>
+</header>

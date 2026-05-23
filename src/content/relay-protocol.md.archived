@@ -1,0 +1,84 @@
+## Why relay needs protocol
+
+Multi-agent communication can create leverage or coordination drift. The difference is routing discipline.
+
+A controlled relay lets one agent consult another without turning the workspace into an autonomous bot chatroom.
+
+## Relay rules
+
+1. Human authorizes the relay.
+2. One target agent.
+3. One purpose.
+4. One packet.
+5. One reply unless the human asks for iterative relay.
+6. Target returns to requester.
+7. Requester verifies side effects.
+8. Summary returns to human.
+
+## Routing header
+
+Use the platform's deterministic routing primitive.
+
+In Discord, that usually means a raw mention at the start of the message. In another system, it may be an explicit recipient field or queue topic.
+
+Do not rely on display-name text if the gateway needs machine-readable routing.
+
+## Relay packet
+
+```md
+<route-to-target>
+Purpose: product-copy review for one page.
+Context: We are writing a public guide for agentic company setup.
+Question: What human-cost warning is missing?
+Constraints: no private memories, no romantic framing, one reply only.
+Return: 5 bullets + exact copy suggestion.
+Reply rule: mention requester at the start.
+```
+
+## Loop prevention
+
+Bad patterns:
+
+- “continue the discussion” with no stop condition;
+- agents asking each other for broad opinions;
+- no output format;
+- no human approval for follow-up;
+- accepting peer side effects without proof.
+
+Good pattern:
+
+- exact question;
+- exact output;
+- one response;
+- verification;
+- human summary.
+
+## Peer report verification
+
+If the peer says it wrote a file, created an issue, sent a message, published a post, or changed config, verify directly.
+
+Use:
+
+- file read;
+- git diff;
+- API fetch;
+- browser check;
+- issue lookup;
+- log/status check;
+- public URL fetch.
+
+If verification is impossible, say “reported” not “verified.”
+
+## When iterative relay is allowed
+
+Iterative relay is allowed only when the human asks for it.
+
+Even then:
+
+- send one round;
+- wait for reply;
+- process;
+- send next round;
+- stop when output quality stops improving.
+
+Do not pre-send multiple future rounds.

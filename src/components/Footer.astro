@@ -1,0 +1,46 @@
+---
+import { footerText } from '../data/siteI18n';
+---
+<footer class="footer" data-reveal>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="foot-brand-lockup" href="/" aria-label="Back to top / kembali ke atas">
+          <span class="footer-logo" aria-hidden="true"><img src="/logo.png" alt="" /></span>
+          <span>Galyarder Labs</span>
+        </a>
+        <p data-i18n-en>{footerText.description.en}</p>
+        <p data-i18n-id>{footerText.description.id}</p>
+        <a class="foot-cta" href="/docs/build-roadmap/">
+          <span data-i18n-en>{footerText.cta.en}</span>
+          <span data-i18n-id>{footerText.cta.id}</span>
+          <span class="meta"><span data-i18n-en>{footerText.ctaMeta.en}</span><span data-i18n-id>{footerText.ctaMeta.id}</span></span>
+        </a>
+      </div>
+
+      {footerText.columns.map((column) => (
+        <nav class="foot-col" aria-label={`${column.label.en} / ${column.label.id}`}>
+          <h5><span data-i18n-en>{column.title.en}</span><span data-i18n-id>{column.title.id}</span></h5>
+          <ul>
+            {column.links.map((link) => (
+              <li><a href={link.href}><span data-i18n-en>{link.label.en}</span><span data-i18n-id>{link.label.id}</span></a></li>
+            ))}
+          </ul>
+        </nav>
+      ))}
+    </div>
+
+    <div class="foot-bottom">
+      <span><span class="pulse" aria-hidden="true"></span><span data-i18n-en>{footerText.bottom.left.en}</span><span data-i18n-id>{footerText.bottom.left.id}</span></span>
+      <span class="right">
+        <span>Galyarder Labs</span>
+        <span><span data-i18n-en>{footerText.bottom.proof.en}</span><span data-i18n-id>{footerText.bottom.proof.id}</span></span>
+        <span><span data-i18n-en>{footerText.bottom.locale.en}</span><span data-i18n-id>{footerText.bottom.locale.id}</span></span>
+      </span>
+    </div>
+
+    <div class="foot-mega" aria-hidden="true">
+      <div class="word">Agentic <em>Company</em>.</div>
+    </div>
+  </div>
+</footer>

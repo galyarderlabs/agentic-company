@@ -1,0 +1,101 @@
+---
+import '../styles/global.css';
+import TopNav from '../components/TopNav.astro';
+import Footer from '../components/Footer.astro';
+import { siteMeta } from '../data/siteI18n';
+const { title = 'Build Your Agentic Company', description = 'A public guide for building your own agentic company.' } = Astro.props;
+---
+<!doctype html>
+<html lang="en" data-locale="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#efe7d2" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="side-rail left" aria-hidden="true"><span data-i18n-en>{siteMeta.sideRails.left.en}</span><span data-i18n-id>{siteMeta.sideRails.left.id}</span></div>
+    <div class="side-rail right" aria-hidden="true"><span data-i18n-en>{siteMeta.sideRails.right.en}</span><span data-i18n-id>{siteMeta.sideRails.right.id}</span></div>
+    <div class="corner-frame" aria-hidden="true">
+      <span class="corner tl"></span>
+      <span class="corner tr"></span>
+      <span class="corner bl"></span>
+      <span class="corner br"></span>
+    </div>
+    <div class="site-shell">
+      <TopNav />
+      <slot />
+      <Footer />
+    </div>
+    <script is:inline>
+      (() => {
+        const root = document.documentElement;
+        const stored = localStorage.getItem('acs-locale');
+        const initial = stored === 'id' ? 'id' : 'en';
+
+        const applyLocale = (locale) => {
+          const next = locale === 'id' ? 'id' : 'en';
+          root.dataset.locale = next;
+          root.lang = next;
+          localStorage.setItem('acs-locale', next);
+          for (const button of document.querySelectorAll('[data-locale-select]')) {
+            const active = button.getAttribute('data-locale-select') === next;
+            button.classList.toggle('is-active', active);
+            button.setAttribute('aria-pressed', active ? 'true' : 'false');
+          }
+        };
+
+        applyLocale(initial);
+        for (const button of document.querySelectorAll('[data-locale-select]')) {
+          button.addEventListener('click', () => applyLocale(button.getAttribute('data-locale-select')));
+        }
+
+        const revealTargets = [
+          ...document.querySelectorAll('[data-reveal]'),
+          ...document.querySelectorAll('.article-body > *:not([data-reveal]):not([data-i18n-en]):not([data-i18n-id])'),
+          ...document.querySelectorAll('.chapter-row:not([data-reveal]), .phase:not([data-reveal]), .card:not([data-reveal]), .template-card:not([data-reveal])')
+        ];
+
+        revealTargets.forEach((el, index) => {
+          if (!el.dataset.reveal) el.dataset.reveal = 'up';
+          el.style.setProperty('--reveal-delay', `${Math.min(index * 28, 260)}ms`);
+        });
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+          revealTargets.forEach((el) => { el.dataset.revealed = 'true'; });
+          return;
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            entry.target.dataset.revealed = 'true';
+            observer.unobserve(entry.target);
+          }
+        }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+        revealTargets.forEach((el) => observer.observe(el));
+
+        const revealPassedTargets = () => {
+          const cutoff = window.scrollY > 0
+            ? Number.POSITIVE_INFINITY
+            : window.innerHeight + 160;
+          for (const el of revealTargets) {
+            if (el.dataset.revealed === 'true') continue;
+            const top = el.getBoundingClientRect().top + window.scrollY;
+            if (top > cutoff) continue;
+            el.dataset.revealed = 'true';
+            observer.unobserve(el);
+          }
+        };
+
+        window.addEventListener('scroll', revealPassedTargets, { passive: true });
+        window.addEventListener('resize', revealPassedTargets);
+        requestAnimationFrame(revealPassedTargets);
+      })();
+    </script>
+  </body>
+</html>

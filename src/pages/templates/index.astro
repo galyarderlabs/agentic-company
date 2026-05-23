@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { templatePage, templates } from '../../data/siteI18n';
+---
+<BaseLayout title={templatePage.metaTitle.en} description={templatePage.metaDescription.en}>
+  <main class="container section">
+    <div class="section-head">
+      <h2><span data-i18n-en>{templatePage.title.en}</span><span data-i18n-id>{templatePage.title.id}</span></h2>
+      <p><span data-i18n-en>{templatePage.description.en}</span><span data-i18n-id>{templatePage.description.id}</span></p>
+    </div>
+    <div class="grid-2">
+      {templates.map((tpl) => (
+        <div class="template-card">
+          <h3><span data-i18n-en>{tpl.title.en}</span><span data-i18n-id>{tpl.title.id}</span></h3>
+          <pre data-i18n-en><code>{tpl.body.en}</code></pre>
+          <pre data-i18n-id><code>{tpl.body.id}</code></pre>
+        </div>
+      ))}
+    </div>
+  </main>
+</BaseLayout>

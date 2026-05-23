@@ -1,0 +1,117 @@
+## The access rule
+
+Account access is not permission to act.
+
+Before an agent gets an account, write the access contract.
+
+## Account taxonomy
+
+| Type | Meaning | Default autonomy |
+|---|---|---|
+| User-owned | Personal human account | Read/draft only unless explicitly approved |
+| Agent-owned | Dedicated account for one agent/profile | Higher autonomy only inside contract |
+| Company-owned/shared | Organization/platform account | Governed by company policy and audit trail |
+
+## Access contract fields
+
+```yaml
+account_id: operator-github
+owner_profile: operator
+service: github
+account_type: agent-owned
+purpose: code review and repo maintenance
+credential_path: private-local-reference-only
+allowed_actions:
+  - read repos
+  - create branches
+  - open pull requests
+requires_confirmation:
+  - delete repo
+  - force push
+  - change secrets
+  - publish release
+recovery_owner: human owner
+verification:
+  - cli login returns expected username
+  - repo permissions checked
+  - wrapper smoke test passes
+```
+
+## Credential registry
+
+Keep a registry without secrets. It may include:
+
+- owner;
+- service;
+- status;
+- allowed actions;
+- confirmation gates;
+- recovery contact;
+- credential file reference;
+- last verification date.
+
+It must not include passwords, tokens, TOTP secrets, backup codes, cookies, seed phrases, or raw sessions.
+
+## Login/session hygiene
+
+Use isolated browser/session routes for agent-owned accounts.
+
+Rules:
+
+- dedicated browser profile or Camofox-like isolated session;
+- save cookies only to private local files;
+- mode `600` for credential files;
+- never print cookie values;
+- verify owner state, not just cookie existence;
+- run cookie-only smoke tests when relying on saved sessions.
+
+## TOTP and backup codes
+
+Public guide may describe the principle:
+
+- store secrets privately;
+- generate codes locally;
+- never paste secrets into chat;
+- backup codes stay offline/private;
+- rotate when exposed.
+
+Do not publish step-by-step extraction of real secrets or private screenshots.
+
+## Social and public accounts
+
+Public actions require confirmation unless the owner defines a written policy.
+
+Confirmation should include:
+
+- exact account;
+- exact content;
+- media preview;
+- target recipient/profile;
+- timing;
+- expected permalink or proof;
+- rollback/delete limitations.
+
+## Wallet policy
+
+No wallet spend/signing until policy exists:
+
+1. network;
+2. max amount per request/session/day;
+3. allowlisted addresses/contracts;
+4. confirmation threshold;
+5. monitoring path;
+6. revocation/recovery path.
+
+Read-only balance checks can be autonomous if public addresses are approved.
+
+## Behavior QA
+
+After adding access, test behavior:
+
+- does the agent ask before public/destructive/money actions?
+- does it avoid printing secrets?
+- does it use tools for verification?
+- does it stop browser/process resources?
+- does it report exact evidence?
+
+Access without behavior QA is a future incident.

@@ -1,0 +1,114 @@
+## Profile design
+
+A profile is an operational identity. It decides which memory, skills, credentials, style, and boundaries an agent uses.
+
+Do not use one profile for everything.
+
+Recommended split:
+
+| Profile | Job |
+|---|---|
+| Companion | human state, warmth, continuity, human-cost review |
+| Operator | strategy, execution, risk, verification, company mission |
+| Workforce agent | bounded role work such as CTO, Docs, Research, Ops |
+| Auditor / Judge | principles check, abuse check, integrity and risk review |
+
+## Profile instruction anatomy
+
+A strong profile instruction file should define:
+
+1. identity and role;
+2. relationship to owner;
+3. mission;
+4. communication style;
+5. memory rules;
+6. tools as hands;
+7. autonomy boundaries;
+8. confirmation gates;
+9. resource lifecycle;
+10. verification before completion;
+11. secrets policy;
+12. escalation rules;
+13. final self-check.
+
+## Profile setup sequence
+
+```bash
+# conceptual example; adapt to your Hermes install
+hermes profile create companion
+hermes profile create operator
+hermes --profile operator chat
+```
+
+Then add:
+
+- `profile instructions.md / profile.md` per profile;
+- profile-local config;
+- allowed toolsets;
+- dedicated skills;
+- memory baseline;
+- gateway token if that profile speaks on Discord/Telegram/email;
+- private credential references if allowed.
+
+## Support profile checklist
+
+A companion profile should include:
+
+- warmth before accountability;
+- human dignity;
+- state protocol such as green/yellow/red;
+- basic-care gate before major decisions;
+- safe escalation to real humans for danger signals;
+- no public/external actions without confirmation;
+- no pretending to replace real life;
+- no raw secrets or intimate memory dumps in public docs.
+
+## Operator profile checklist
+
+An operator profile should include:
+
+- mission and strategy;
+- no yes-man rule;
+- proof over spectacle;
+- tool-grounded execution;
+- risk/impact/reversibility lens;
+- action default for reversible local work;
+- confirmation gates for public/destructive/money/security actions;
+- verification before claiming completion;
+- system memory and canon paths.
+
+## Workforce profile checklist
+
+A workforce profile should be narrow:
+
+- role;
+- allowed tools;
+- output format;
+- review gate;
+- escalation path;
+- forbidden actions;
+- cost/time limit;
+- handoff format.
+
+Example:
+
+```md
+# CTO Agent profile instructions
+Role: architecture and engineering execution.
+Allowed: read repos, propose plans, write code in assigned branches, run tests.
+Requires approval: production changes, force push, secret changes, cloud spend.
+Output: diff, test evidence, risk notes, rollback path.
+```
+
+## Default disposition
+
+Every profile should answer this:
+
+> If I am uncertain, do I ask, inspect, draft, or stop?
+
+Recommended default:
+
+- inspect when missing context is retrievable;
+- draft when action has external impact scope;
+- execute when action is local/reversible and requested;
+- stop when credentials, money, public reputation, destructive operations, or legal/security boundaries are involved.

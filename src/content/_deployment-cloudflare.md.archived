@@ -1,0 +1,126 @@
+## Deployment target
+
+This guide is built with Astro and deploys cleanly to Cloudflare using Wrangler.
+
+There are two common Cloudflare paths:
+
+1. **Cloudflare Pages** — easiest for static docs.
+2. **Cloudflare Workers with static assets** — deploy with Wrangler config using `assets.directory = ./dist`.
+
+For this guide, static output is enough unless you add server-rendered features.
+
+## Project skeleton
+
+```bash
+pnpm create astro@latest agentic-company-stack
+cd agentic-company-stack
+pnpm install
+```
+
+Recommended files:
+
+```text
+astro.config.mjs
+wrangler.toml
+src/layouts/BaseLayout.astro
+src/layouts/DocLayout.astro
+src/pages/index.astro
+src/pages/docs/[slug].astro
+src/data/docs.ts
+src/styles/global.css
+```
+
+## Astro config
+
+```js
+import { defineConfig } from 'astro/config';
+
+export default defineConfig({
+  output: 'static',
+  site: 'https://your-domain.example'
+});
+```
+
+## Wrangler config for static Workers assets
+
+```toml
+name = "agentic-company-stack"
+compatibility_date = "YYYY-MM-DD"
+
+[assets]
+directory = "./dist"
+```
+
+This matches the Cloudflare Workers static asset deployment model.
+
+## Scripts
+
+```json
+{
+  "scripts": {
+    "dev": "astro dev --host 127.0.0.1 --port 8788",
+    "build": "astro check && astro build",
+    "preview": "wrangler dev --local --port 8788",
+    "deploy": "wrangler deploy"
+  }
+}
+```
+
+If using Cloudflare Pages instead:
+
+```bash
+wrangler pages deploy ./dist --project-name agentic-company-stack
+```
+
+## Build gate
+
+Before deploy:
+
+```bash
+pnpm build
+```
+
+Then scan the source and `dist` output for secrets.
+
+## Local preview
+
+For Astro dev:
+
+```bash
+pnpm dev
+```
+
+For Cloudflare-like preview after build:
+
+```bash
+wrangler dev --local
+```
+
+or for Pages:
+
+```bash
+wrangler pages dev ./dist
+```
+
+## Deploy gate
+
+Do not deploy public docs until:
+
+- content is approved;
+- secret scan passes;
+- private details are removed;
+- links crawl cleanly;
+- mobile viewport is checked;
+- rollback command is known.
+
+## Rollback
+
+Cloudflare keeps deployment history. Record:
+
+- deployment URL;
+- deployment ID;
+- git commit;
+- build command;
+- rollback path.
+
+Do not treat deployment as done until the public URL fetches and the content is the approved version.

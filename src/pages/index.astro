@@ -1,0 +1,149 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { localizedDocs } from '../data/i18n';
+import { homeText, localizedSetupPhases, localizedStackLayers, levelLabel, readLabel, siteMeta } from '../data/siteI18n';
+
+const docsEn = localizedDocs('en');
+const docsId = localizedDocs('id');
+const setupPhasesEn = localizedSetupPhases('en');
+const setupPhasesId = localizedSetupPhases('id');
+const stackLayersEn = localizedStackLayers('en');
+const stackLayersId = localizedStackLayers('id');
+const chapterLinks = docsEn.map((doc, index) => ({ en: doc, id: docsId[index], n: String(index).padStart(2, '0') }));
+const heroIndexRows = chapterLinks.slice(0, 6);
+const setupPhases = setupPhasesEn.map((phase, index) => ({ en: phase, id: setupPhasesId[index] }));
+const stackLayers = stackLayersEn.map((layer, index) => ({ en: layer, id: stackLayersId[index] }));
+---
+<BaseLayout title={siteMeta.title.en} description={siteMeta.description.en}>
+  <main>
+    <section class="hero">
+      <div class="status-strip" aria-label="Guide status / status panduan" data-reveal>
+        {homeText.statusStrip.map((item) => <span><span data-i18n-en>{item.en}</span><span data-i18n-id>{item.id}</span></span>)}
+      </div>
+
+      <div class="hero-grid">
+        <div class="hero-copy" data-reveal>
+          <h1 class="hero-title">
+            <span data-i18n-en>Build the <em>{homeText.titleEm.en}</em> before you trust the agents.</span>
+            <span data-i18n-id>Bangun <em>{homeText.titleEm.id}</em> sebelum kamu percaya pada agen.</span>
+          </h1>
+          <p class="hero-sub">
+            {homeText.sub.map((item) => <><span data-i18n-en>{item.en}</span><span data-i18n-id>{item.id}</span></>)}
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="/docs/manifesto/"><span data-i18n-en>{homeText.actions.principles.en}</span><span data-i18n-id>{homeText.actions.principles.id}</span></a>
+            <a class="button" href="/docs/reality-check/"><span data-i18n-en>{homeText.actions.map.en}</span><span data-i18n-id>{homeText.actions.map.id}</span></a>
+          </div>
+          <div class="hero-proof" aria-label="Guide contents summary / ringkasan isi panduan">
+            <div class="proof-card"><strong>{chapterLinks.length}</strong><span data-i18n-en>{homeText.proof.chapters.en}</span><span data-i18n-id>{homeText.proof.chapters.id}</span></div>
+            <div class="proof-card"><strong>{setupPhases.length}</strong><span data-i18n-en>{homeText.proof.gates.en}</span><span data-i18n-id>{homeText.proof.gates.id}</span></div>
+            <div class="proof-card"><strong>1</strong><span data-i18n-en>{homeText.proof.records.en}</span><span data-i18n-id>{homeText.proof.records.id}</span></div>
+          </div>
+        </div>
+
+        <aside class="manifest-pane" aria-label="Manual sequence preview / pratinjau urutan manual" data-reveal="scale">
+          <span class="corner tl"></span>
+          <span class="corner tr"></span>
+          <span class="corner bl"></span>
+          <span class="corner br"></span>
+          <div class="pane-head">
+            <span><span data-i18n-en>{homeText.pane.title.en}</span><span data-i18n-id>{homeText.pane.title.id}</span></span>
+            <code>00-05</code>
+          </div>
+          <div class="mini-index">
+            {heroIndexRows.map((doc) => (
+              <a class="mini-row" href={`/docs/${doc.en.slug}/`}>
+                <span>{doc.n}</span>
+                <div>
+                  <b><span data-i18n-en>{doc.en.title}</span><span data-i18n-id>{doc.id.title}</span></b>
+                  <small><span data-i18n-en>{doc.en.kicker}</span><span data-i18n-id>{doc.id.kicker}</span></small>
+                </div>
+              </a>
+            ))}
+          </div>
+          <div class="pane-caption">
+            <span data-i18n-en>{homeText.pane.caption.en}</span>
+            <span data-i18n-id>{homeText.pane.caption.id}</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section container sequence-section">
+      <div class="section-head" data-reveal>
+        <h2><span data-i18n-en>{homeText.sections.buildOrder.title.en}</span><span data-i18n-id>{homeText.sections.buildOrder.title.id}</span></h2>
+        <p data-i18n-en>{homeText.sections.buildOrder.body.en}</p>
+        <p data-i18n-id>{homeText.sections.buildOrder.body.id}</p>
+      </div>
+      <div class="chapter-ledger" aria-label="Agentic company chapter sequence / urutan bab agentic company">
+        {chapterLinks.map((doc) => (
+          <a class="chapter-row" href={`/docs/${doc.en.slug}/`} data-reveal>
+            <span class="chapter-num">{doc.n}</span>
+            <div>
+              <small><span data-i18n-en>{doc.en.kicker}</span><span data-i18n-id>{doc.id.kicker}</span></small>
+              <h3><span data-i18n-en>{doc.en.title}</span><span data-i18n-id>{doc.id.title}</span></h3>
+            </div>
+            <p><span data-i18n-en>{doc.en.description}</span><span data-i18n-id>{doc.id.description}</span></p>
+            <footer><span data-i18n-en>{levelLabel(doc.en.level, 'en')}</span><span data-i18n-id>{levelLabel(doc.id.level, 'id')}</span><span data-i18n-en>{readLabel(doc.en.read, 'en')}</span><span data-i18n-id>{readLabel(doc.id.read, 'id')}</span></footer>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="section-head" data-reveal>
+        <h2><span data-i18n-en>{homeText.sections.systemLayers.title.en}</span><span data-i18n-id>{homeText.sections.systemLayers.title.id}</span></h2>
+        <p data-i18n-en>{homeText.sections.systemLayers.body.en}</p>
+        <p data-i18n-id>{homeText.sections.systemLayers.body.id}</p>
+      </div>
+      <div class="grid-3">
+        {stackLayers.map((layer, i) => (
+          <div class="card layer-card" data-reveal>
+            <div>
+              <div class="num">{String(i + 1).padStart(2, '0')}</div>
+              <h3><span data-i18n-en>{layer.en.name}</span><span data-i18n-id>{layer.id.name}</span></h3>
+              <p><span data-i18n-en>{layer.en.role}</span><span data-i18n-id>{layer.id.role}</span></p>
+            </div>
+            <p><strong><span data-i18n-en>Proof:</span><span data-i18n-id>Bukti:</span></strong> <span data-i18n-en>{layer.en.proof}</span><span data-i18n-id>{layer.id.proof}</span></p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="section-head" data-reveal>
+        <h2><span data-i18n-en>{homeText.sections.gateLedger.title.en}</span><span data-i18n-id>{homeText.sections.gateLedger.title.id}</span></h2>
+        <p data-i18n-en>{homeText.sections.gateLedger.body.en}</p>
+        <p data-i18n-id>{homeText.sections.gateLedger.body.id}</p>
+      </div>
+      <div class="timeline">
+        {setupPhases.map((phase) => (
+          <div class="phase" data-reveal>
+            <b><span data-i18n-en>{phase.en.phase}</span><span data-i18n-id>{phase.id.phase}</span></b>
+            <div><h3><span data-i18n-en>{phase.en.title}</span><span data-i18n-id>{phase.id.title}</span></h3><p><span data-i18n-en>{phase.en.output}</span><span data-i18n-id>{phase.id.output}</span></p></div>
+            <div><p><strong><span data-i18n-en>Gate:</span><span data-i18n-id>Gerbang:</span></strong> <span data-i18n-en>{phase.en.gate}</span><span data-i18n-id>{phase.id.gate}</span></p></div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="grid-2 boundary-grid">
+        <div class="card warning" data-reveal>
+          <span class="tag"><span data-i18n-en>{homeText.sections.boundaries.publicTag.en}</span><span data-i18n-id>{homeText.sections.boundaries.publicTag.id}</span></span>
+          <h3 data-i18n-en>{homeText.sections.boundaries.publicTitle.en}</h3>
+          <h3 data-i18n-id>{homeText.sections.boundaries.publicTitle.id}</h3>
+          <p data-i18n-en>{homeText.sections.boundaries.publicBody.en}</p>
+          <p data-i18n-id>{homeText.sections.boundaries.publicBody.id}</p>
+        </div>
+        <div class="card warning" data-reveal>
+          <span class="tag"><span data-i18n-en>{homeText.sections.boundaries.permissionTag.en}</span><span data-i18n-id>{homeText.sections.boundaries.permissionTag.id}</span></span>
+          <h3 data-i18n-en>{homeText.sections.boundaries.permissionTitle.en}</h3>
+          <h3 data-i18n-id>{homeText.sections.boundaries.permissionTitle.id}</h3>
+          <p data-i18n-en>{homeText.sections.boundaries.permissionBody.en}</p>
+          <p data-i18n-id>{homeText.sections.boundaries.permissionBody.id}</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

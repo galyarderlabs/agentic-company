@@ -1,0 +1,110 @@
+## Why memory needs routing
+
+Bad memory turns agents into hoarders. Good memory turns repeated human context into leverage.
+
+The rule:
+
+> Store facts where they will be useful, auditable, and safe.
+
+## Layer map
+
+| Layer | Purpose | Store |
+|---|---|---|
+| Hot memory | compact stable facts always worth injecting | `USER.md`, `MEMORY.md` |
+| Semantic recall | cross-session lessons and facts | Hindsight / memory backend |
+| Transcript recall | exact past conversations | session search |
+| Human-readable canon | long docs, protocols, decisions | Obsidian |
+| Reusable procedures | workflows and commands | skills |
+| Source-heavy knowledge | PDFs, docs, notebooks | NotebookLM / GBrain |
+
+## Hot memory
+
+Use hot memory for stable, compact facts:
+
+- owner preferences;
+- profile identity;
+- canonical paths;
+- durable tool quirks;
+- stable architecture decisions.
+
+Do not put temporary task progress into hot memory.
+
+Bad:
+
+```text
+Finished building landing page v1 today.
+```
+
+Good:
+
+```text
+Profile distributions exclude secrets, sessions, logs, caches, browser state, and raw memory DBs.
+```
+
+## Hindsight / semantic memory
+
+Use semantic memory for recall across sessions. Query it when the task touches prior work, preferences, profile behavior, brand direction, tooling, or repeated failure.
+
+Example flow:
+
+1. user references something from last week;
+2. query semantic memory;
+3. verify live files/state if the answer affects current execution;
+4. answer or act.
+
+## Session search
+
+Use transcript search only when you need exact wording or exact session detail.
+
+Do not use transcript recall as the primary system of record for long-term procedures.
+
+## Obsidian
+
+Obsidian is for readable durable notes:
+
+- operating protocols;
+- architecture maps;
+- decision logs;
+- source comparisons;
+- incident reports;
+- canon docs;
+- long-form guides.
+
+A good Obsidian note should help a human understand the system months later.
+
+## Skills
+
+Skills are for procedures:
+
+- exact commands;
+- step order;
+- pitfalls;
+- verification checklist;
+- rollback.
+
+If a workflow is likely to repeat, it belongs in a skill, not only in memory.
+
+## Memory dignity
+
+If you build a companion layer, do not reduce the human into productivity metadata.
+
+Remember:
+
+- preferences;
+- boundaries;
+- important human context;
+- communication needs;
+- stable values.
+
+Do not store shameful, intimate, or private details in public docs or exported guides.
+
+## Recall ladder
+
+Use this ladder before major answers:
+
+1. load relevant skill;
+2. query semantic memory for cross-session context;
+3. read live files/canon when needed;
+4. use session search only for exact transcript;
+5. verify current state with tools;
+6. then answer.

@@ -1,0 +1,106 @@
+---
+import DocLayout from '../../layouts/DocLayout.astro';
+import { docs } from '../../data/docs';
+import { contentBySlug } from '../../data/contentManifest';
+import { contentId, localizeDoc } from '../../data/i18n';
+import { docUi } from '../../data/siteI18n';
+
+export function getStaticPaths() {
+  return docs.map((doc) => ({ params: { slug: doc.slug }, props: { doc } }));
+}
+
+const { doc } = Astro.props;
+const docId = localizeDoc(doc, 'id');
+const markdown = contentBySlug[doc.slug] ?? '';
+
+function escapeHtml(input: string) {
+  return input
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;');
+}
+
+function inline(input: string) {
+  return escapeHtml(input)
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+}
+
+function render(md: string) {
+  const lines = md.split('\n');
+  let html = '';
+  let i = 0;
+  while (i < lines.length) {
+    const line = lines[i];
+    if (!line.trim()) { i++; continue; }
+    if (line.startsWith('```')) {
+      const lang = line.slice(3).trim();
+      i++;
+      const code: string[] = [];
+      while (i < lines.length && !lines[i].startsWith('```')) { code.push(lines[i]); i++; }
+      i++;
+      html += `<pre><code class="language-${escapeHtml(lang)}">${escapeHtml(code.join('\n'))}</code></pre>`;
+      continue;
+    }
+    if (line.startsWith('## ')) { html += `<h2 id="${line.slice(3).toLowerCase().replace(/[^a-z0-9]+/g,'-')}">${inline(line.slice(3))}</h2>`; i++; continue; }
+    if (line.startsWith('### ')) { html += `<h3>${inline(line.slice(4))}</h3>`; i++; continue; }
+    if (line.startsWith('> ')) {
+      const quote: string[] = [];
+      while (i < lines.length && lines[i].startsWith('> ')) { quote.push(lines[i].slice(2)); i++; }
+      html += `<div class="callout">${quote.map((q) => `<p>${inline(q)}</p>`).join('')}</div>`;
+      continue;
+    }
+    if (line.startsWith('|')) {
+      const rows: string[] = [];
+      while (i < lines.length && lines[i].startsWith('|')) { rows.push(lines[i]); i++; }
+      const filtered = rows.filter((row) => !/^\|\s*-+/.test(row));
+      const table = filtered.map((row, idx) => {
+        const cells = row.split('|').slice(1, -1).map((cell) => cell.trim());
+        const tag = idx === 0 ? 'th' : 'td';
+        return `<tr>${cells.map((cell) => `<${tag}>${inline(cell)}</${tag}>`).join('')}</tr>`;
+      }).join('');
+      html += `<div class="table-wrap"><table>${table}</table></div>`;
+      continue;
+    }
+    if (line.startsWith('- ')) {
+      const items: string[] = [];
+      while (i < lines.length && lines[i].startsWith('- ')) { items.push(lines[i].slice(2)); i++; }
+      html += `<ul>${items.map((item) => `<li>${inline(item)}</li>`).join('')}</ul>`;
+      continue;
+    }
+    if (/^\d+\.\s/.test(line)) {
+      const items: string[] = [];
+      while (i < lines.length && /^\d+\.\s/.test(lines[i])) { items.push(lines[i].replace(/^\d+\.\s/, '')); i++; }
+      html += `<ol>${items.map((item) => `<li>${inline(item)}</li>`).join('')}</ol>`;
+      continue;
+    }
+    const para: string[] = [];
+    while (i < lines.length && lines[i].trim() && !lines[i].startsWith('## ') && !lines[i].startsWith('### ') && !lines[i].startsWith('```') && !lines[i].startsWith('|') && !lines[i].startsWith('- ') && !/^\d+\.\s/.test(lines[i]) && !lines[i].startsWith('> ')) {
+      para.push(lines[i]); i++;
+    }
+    html += `<p>${inline(para.join(' '))}</p>`;
+  }
+  return html;
+}
+const htmlEn = render(markdown);
+const htmlId = render(contentId[doc.slug] ?? markdown);
+const index = docs.findIndex((item) => item.slug === doc.slug);
+const prev = docs[index - 1];
+const next = docs[index + 1];
+const prevId = prev ? localizeDoc(prev, 'id') : undefined;
+const nextId = next ? localizeDoc(next, 'id') : undefined;
+---
+<DocLayout doc={doc} docId={docId}>
+  <div class="callout">
+    <strong><span data-i18n-en>{docUi.chapterOutput.en}</span><span data-i18n-id>{docUi.chapterOutput.id}</span></strong>
+    <span data-i18n-en>{doc.sections.join(' · ')}.</span>
+    <span data-i18n-id>{docId.sections.join(' · ')}.</span>
+  </div>
+  <div data-i18n-en set:html={htmlEn} />
+  <div data-i18n-id set:html={htmlId} />
+  <div class="grid-2" style="margin-top: 46px;">
+    {prev && prevId && <a class="card" href={`/docs/${prev.slug}/`}><span class="tag"><span data-i18n-en>{docUi.previous.en}</span><span data-i18n-id>{docUi.previous.id}</span></span><h3><span data-i18n-en>{prev.title}</span><span data-i18n-id>{prevId.title}</span></h3><p><span data-i18n-en>{prev.description}</span><span data-i18n-id>{prevId.description}</span></p></a>}
+    {next && nextId && <a class="card" href={`/docs/${next.slug}/`}><span class="tag"><span data-i18n-en>{docUi.next.en}</span><span data-i18n-id>{docUi.next.id}</span></span><h3><span data-i18n-en>{next.title}</span><span data-i18n-id>{nextId.title}</span></h3><p><span data-i18n-en>{next.description}</span><span data-i18n-id>{nextId.description}</span></p></a>}
+  </div>
+</DocLayout>

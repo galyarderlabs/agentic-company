@@ -1,0 +1,115 @@
+## 30-day build plan
+
+This roadmap turns the architecture into execution.
+
+## Day 1–3: Principles and local runtime
+
+Outputs:
+
+- owner principles;
+- publication safety list;
+- risk matrix;
+- Hermes installed;
+- one profile working;
+- file/terminal/web tools verified.
+
+Checks:
+
+```bash
+hermes --version
+hermes tools
+```
+
+Run one read-only task and one local write task.
+
+## Day 4–7: Identity split
+
+Outputs:
+
+- companion profile instructions;
+- operator profile instructions;
+- workforce template;
+- profile configs;
+- communication style per profile.
+
+Checks:
+
+- each profile identifies its role;
+- each profile knows confirmation gates;
+- no profile contains raw secrets;
+- operator uses tools before system claims;
+- companion handles human state without taking over company execution.
+
+## Week 2: Memory and HQ
+
+Outputs:
+
+- hot memory baseline;
+- semantic memory backend;
+- Obsidian folder structure;
+- skill creation/update rule;
+- Discord/Telegram/email gateway;
+- controlled relay test.
+
+Checks:
+
+- semantic recall returns relevant facts;
+- Obsidian notes are readable;
+- relay requires explicit route;
+- bot messages do not loop;
+- home channel receives test delivery.
+
+## Week 3: Access and tools
+
+Outputs:
+
+- access registry;
+- agent-owned account skeletons;
+- credential file permission policy;
+- MCP server list;
+- tool capability checks;
+- behavior QA scenarios.
+
+Checks:
+
+- no secrets in git/docs/memory;
+- account status distinguishes credential storage from login success;
+- public actions request approval;
+- browser/session files are private;
+- MCP calls work read-only.
+
+## Week 4: Company control plane
+
+Outputs:
+
+- Paperclip/HQ-style company;
+- agent roster;
+- goals;
+- task packet templates;
+- approval queue;
+- daily pulse job;
+- weekly audit job.
+
+Checks:
+
+- health endpoint works;
+- UI responds;
+- issue creation works;
+- approval flow works;
+- cost/activity visible;
+- completed work leaves artifacts.
+
+## Definition of done
+
+You have a real agentic company when:
+
+- the owner can issue a command from HQ;
+- the operator can route it to a role;
+- the role has tools and a task packet;
+- the output is reviewed;
+- the side effect is verified;
+- important state is stored in the right memory/control layer;
+- risky actions are approval-gated;
+- maintenance catches drift.
+
+If any of those are missing, you have an assistant, not a company.
