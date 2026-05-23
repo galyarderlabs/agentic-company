@@ -1,68 +1,126 @@
-# Agentic Company Stack
+<p align="center">
+  <img src="public/logo.png" width="160" alt="Agentic Company">
+</p>
 
-A public-safe Astro guide for building a governed agentic company operating system around one human operator.
+<h1 align="center">Agentic Company</h1>
 
-This is not the old static HTML draft. The current project is an Astro + Wrangler site with deep docs, templates, responsive UI, and Cloudflare deployment config.
+<p align="center">A practical operating guide for building your own agentic company.</p>
 
-## Stack
+<p align="center">
+  <a href="https://github.com/galyarderlabs/agentic-company"><img src="https://img.shields.io/badge/status-public%20guide-black" alt="Public Guide"></a>
+  <a href="https://github.com/galyarderlabs/galyarder-framework"><img src="https://img.shields.io/badge/framework-galyarder-black" alt="Galyarder Framework"></a>
+  <a href="https://agentic-company.galyarderos.workers.dev"><img src="https://img.shields.io/badge/deploy-cloudflare%20workers-f38020" alt="Cloudflare Workers"></a>
+</p>
 
-- Astro static output
-- Cloudflare Workers static assets via Wrangler
-- Public-safe docs content under `src/content/`
-- Navigation/chapter metadata under `src/data/docs.ts`
-- Global design system under `src/styles/global.css`
+<p align="center">
+  Agentic company · Operating guide · EN / ID
+</p>
 
-## Commands
+---
+
+Most people still use agents like smarter chat boxes: one task, one prompt, one result. That is useful, but it is not a company.
+
+An agentic company needs structure. Roles. Memory. Accounts. Tools. Approval gates. Money boundaries. Proof. Review. The point is not to collect agents. The point is to build an operating layer where agents can do real work without turning the business into chaos.
+
+This guide is the public version of that operating model.
+
+---
+
+## The idea
+
+An agentic company is not a SaaS feature with an AI button. It is a working system where agents have jobs, context, access, constraints, and evidence requirements.
+
+The human stays in command. Agents do the work. The company keeps the record.
+
+---
+
+## What is inside
+
+**Operating principles**  
+The manifesto, reality check, and business-first framing before any technical setup.
+
+**Agent foundations**  
+Identity, memory, communication, support work, execution work, and agent-to-agent relay.
+
+**Company controls**  
+Accounts, access, tools, MCP, Paperclip control, approval gates, security, maintenance, and audit proof.
+
+**Money and business models**  
+Wallets, spending boundaries, ledger discipline, and agent-to-agent work models.
+
+**Build sequence**  
+A setup playbook and roadmap for turning the guide into a working operating layer.
+
+---
+
+## Quickstart
 
 ```bash
+git clone https://github.com/galyarderlabs/agentic-company.git
+cd agentic-company
 pnpm install
 pnpm dev
-pnpm build
-pnpm astro:preview
-pnpm worker:preview
+```
+
+Open **http://localhost:8788**
+
+**Requirements:** Node.js 20+, pnpm 9+
+
+---
+
+## Deploy
+
+```bash
 pnpm deploy
 ```
 
-`pnpm deploy` runs `pnpm build && wrangler deploy`.
+The project builds static Astro output and deploys it to Cloudflare Workers static assets through Wrangler.
 
-## Content map
+---
 
-- `/` — landing page and stack overview
-- `/docs/manifesto/`
-- `/docs/reality-check/`
-- `/docs/business-first/`
-- `/docs/seven-requirements/`
-- `/docs/agent-identity/`
-- `/docs/hermes-setup/`
-- `/docs/company-communication/`
-- `/docs/agent-memory/`
-- `/docs/support-agent/`
-- `/docs/execution-agent/`
-- `/docs/agent-to-agent-relay/`
-- `/docs/accounts-access/`
-- `/docs/tools-and-mcp/`
-- `/docs/paperclip-company-control/`
-- `/docs/working-agents/`
-- `/docs/money-wallets-agent-spending/`
-- `/docs/ledger-audit-proof/`
-- `/docs/business-models-agent-to-agent-work/`
-- `/docs/decision-gates/`
-- `/docs/security/`
-- `/docs/maintenance/`
-- `/docs/setup-playbook/`
-- `/docs/build-roadmap/`
-- `/templates/`
+## Development
 
-## Public-safe boundary
+```bash
+pnpm dev             # Start Astro dev server
+pnpm build           # Type check and build static site
+pnpm astro:preview   # Preview built Astro output
+pnpm worker:preview  # Preview with Wrangler locally
+pnpm deploy          # Build and deploy to Cloudflare Workers
+```
 
-Do not add:
+---
 
-- raw private SOUL files
-- tokens, cookies, TOTP secrets, backup codes, private keys
-- raw session logs or private memory DBs
-- private Discord IDs / private channel maps
-- wallet secrets or live private ops
-- exact private credential paths
-- intimate or family private details
+## Content
 
-Publish the pattern, not the secrets.
+Source docs live in `src/content/`. Indonesian docs live in `src/content/id/` and are loaded through the i18n content manifest.
+
+The site includes:
+
+- `/` — guide overview
+- `/docs/manifesto/` — starting point
+- `/docs/reality-check/` — category boundary
+- `/docs/setup-playbook/` — implementation sequence
+- `/docs/build-roadmap/` — roadmap
+- `/templates/` — reusable operating templates
+
+---
+
+## Public boundary
+
+This repo publishes the pattern, not private operating secrets.
+
+Do not commit tokens, cookies, private session logs, wallet secrets, backup codes, private credentials, private memory databases, or internal identity maps.
+
+---
+
+## Related
+
+[Galyarder HQ](https://github.com/galyarderlabs/galyarder-hq) is the control plane for AI-native companies.  
+[Galyarder Framework](https://github.com/galyarderlabs/galyarder-framework) provides specialized agents and skills for operating them.
+
+---
+
+<p align="center">
+  Build your own agentic company.<br>
+  Keep the human in command. Make the work provable.
+</p>
