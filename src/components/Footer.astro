@@ -6,7 +6,7 @@ import { footerText } from '../data/siteI18n';
     <div class="foot-grid">
       <div class="foot-brand">
         <a class="foot-brand-lockup" href="/" aria-label="Back to top / kembali ke atas">
-          <span class="footer-logo" aria-hidden="true"><img src="/logo.png" alt="" /></span>
+          <span class="footer-logo" aria-hidden="true"><picture><source srcset="/logo-64.webp" type="image/webp" /><img src="/logo-64.png" alt="" width="64" height="64" loading="lazy" decoding="async" /></picture></span>
           <span>Galyarder Labs</span>
         </a>
         <p data-i18n-en>{footerText.description.en}</p>
@@ -20,7 +20,7 @@ import { footerText } from '../data/siteI18n';
 
       {footerText.columns.map((column) => (
         <nav class="foot-col" aria-label={`${column.label.en} / ${column.label.id}`}>
-          <h5><span data-i18n-en>{column.title.en}</span><span data-i18n-id>{column.title.id}</span></h5>
+          <p class="foot-heading"><span data-i18n-en>{column.title.en}</span><span data-i18n-id>{column.title.id}</span></p>
           <ul>
             {column.links.map((link) => (
               <li><a href={link.href}><span data-i18n-en>{link.label.en}</span><span data-i18n-id>{link.label.id}</span></a></li>

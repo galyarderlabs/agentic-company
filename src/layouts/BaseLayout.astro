@@ -53,48 +53,6 @@ const { title = 'Build Your Agentic Company', description = 'A public guide for 
           button.addEventListener('click', () => applyLocale(button.getAttribute('data-locale-select')));
         }
 
-        const revealTargets = [
-          ...document.querySelectorAll('[data-reveal]'),
-          ...document.querySelectorAll('.article-body > *:not([data-reveal]):not([data-i18n-en]):not([data-i18n-id])'),
-          ...document.querySelectorAll('.chapter-row:not([data-reveal]), .phase:not([data-reveal]), .card:not([data-reveal]), .template-card:not([data-reveal])')
-        ];
-
-        revealTargets.forEach((el, index) => {
-          if (!el.dataset.reveal) el.dataset.reveal = 'up';
-          el.style.setProperty('--reveal-delay', `${Math.min(index * 28, 260)}ms`);
-        });
-
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
-          revealTargets.forEach((el) => { el.dataset.revealed = 'true'; });
-          return;
-        }
-
-        const observer = new IntersectionObserver((entries) => {
-          for (const entry of entries) {
-            if (!entry.isIntersecting) continue;
-            entry.target.dataset.revealed = 'true';
-            observer.unobserve(entry.target);
-          }
-        }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-
-        revealTargets.forEach((el) => observer.observe(el));
-
-        const revealPassedTargets = () => {
-          const cutoff = window.scrollY > 0
-            ? Number.POSITIVE_INFINITY
-            : window.innerHeight + 160;
-          for (const el of revealTargets) {
-            if (el.dataset.revealed === 'true') continue;
-            const top = el.getBoundingClientRect().top + window.scrollY;
-            if (top > cutoff) continue;
-            el.dataset.revealed = 'true';
-            observer.unobserve(el);
-          }
-        };
-
-        window.addEventListener('scroll', revealPassedTargets, { passive: true });
-        window.addEventListener('resize', revealPassedTargets);
-        requestAnimationFrame(revealPassedTargets);
       })();
     </script>
   </body>
