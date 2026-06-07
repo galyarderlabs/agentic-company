@@ -1,4 +1,4 @@
-## Apa yang Halaman Ini Putuskan
+## Apa yang Diputuskan Halaman Ini
 
 Halaman ini menentukan siapa yang memiliki setiap akun dan bagian mana yang boleh disentuh agen.
 
@@ -154,7 +154,7 @@ Tanggal tinjauan kredensial berikutnya:
 
 Kalau akses tidak bisa dicabut cepat, akses itu terlalu luas.
 
-## Template Access Registry
+## Template Registry Akses
 
 ```text
 Access Registry

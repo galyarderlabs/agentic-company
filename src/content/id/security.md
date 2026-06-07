@@ -92,7 +92,7 @@ Tool policy:
 
 Jangan beri setiap agen semua tool. Kalau agen hanya butuh pengumpulan sumber, ia tidak butuh file write, wallet, atau login akun.
 
-## MCP Security
+## Keamanan MCP
 
 MCP membuat tool mudah diekspos. Itu berguna dan berbahaya. Tool yang membaca task berbeda dari tool yang mengirim pesan, menghapus record, mengubah permission, atau memakai uang.
 
@@ -371,10 +371,10 @@ Security event, perubahan akses, public action, wallet request, dan efek samping
 
 Prompt injection, credential leak, wallet mistake, public post error, dan efek samping MCP diuji dengan skenario aman. Emergency stop berjalan. Jalur recovery terdokumentasi dan dilatih.
 
-## Security Card Template
+## Template Kartu Keamanan
 
 ```text
-Security Card
+Kartu Keamanan
 
 Asset:
 Owner:

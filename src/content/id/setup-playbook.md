@@ -30,7 +30,7 @@ Desain workforce Anda. Mulai kecil. Perusahaan matang bisa punya puluhan agen sp
 2.  **Execution / Chief of Staff Agent:** merutekan task, menilai risiko, menegakkan decision gate, dan memverifikasi kerja agen junior.
 3.  **Role Agents:** worker spesialis seperti `agent-finance`, `agent-research`, `agent-content`. Tambahkan ini *hanya* saat ada kerja mingguan nyata dan berulang untuk mereka.
 
-Setiap agen butuh Identity Contract yang menjelaskan tanggung jawab, batas, tool yang boleh dipakai, dan format proof wajib.
+Setiap agen butuh Kontrak Identitas yang menjelaskan tanggung jawab, batas, tool yang boleh dipakai, dan format proof wajib.
 
 ### Fase 3: Infrastruktur dan Tool
 
@@ -121,16 +121,16 @@ Jangan bangun satu agen generalist raksasa. Arsitektur hari pertama butuh batas 
 
 #### Matriks Policy: Constraint Hari Pertama
 Dalam 72 jam pertama, agen harus sangat dibatasi. Trust diperoleh lewat output yang bisa diverifikasi.
-| Phase | Max Spend | API Access | Autonomy Level | Context Retention |
+| Tahap | Batas Pengeluaran Maks | Akses API | Tingkat Otonomi | Retensi Konteks |
 | :--- | :--- | :--- | :--- | :--- |
-| **Day 1-3** | $0.00 | Read-Only | Full HITL (Human-in-the-loop) | Wiped Daily |
-| **Week 2** | $10.00 | Sandboxed Write | Autonomous for Trivial tasks | 7-day rolling |
-| **Month 2** | $500.00 | Prod Write | Autonomous with Proof Gates | Permanent (Vector) |
+| **Hari 1-3** | $0.00 | Hanya Baca | HITL Penuh (Human-in-the-loop) | Dihapus Harian |
+| **Minggu 2** | $10.00 | Tulis Sandbox | Otonom untuk tugas sepele | 7 hari rolling |
+| **Bulan 2** | $500.00 | Tulis Produksi | Otonom dengan Gate Bukti | Permanen (Vector) |
 
 #### Taksonomi Kegagalan Setup
-1. **The God-Agent Anti-Pattern:** memberi satu agen akses ke AWS key, Stripe API, dan inbox customer support. Jika compromised, perusahaan hancur. *Mitigasi: pemisahan credential yang keras dan fisik.*
-2. **Context Bleed:** memakai satu namespace vector database untuk semua agen. Sales agent mulai mengarang arsitektur engineering karena mengambil embedding yang salah. *Mitigasi: isolasi namespace ketat di Pinecone/Chroma.*
-3. **Ghost Execution:** deploy agen sebelum Ledger ada. Agen mengambil action, tapi operator tidak punya dashboard untuk melihat apa yang terjadi. *Mitigasi: Ledger harus menjadi sistem pertama yang dipasang.*
+1. **Anti-Pola Agen Tuhan:** memberi satu agen akses ke AWS key, Stripe API, dan inbox customer support. Jika compromised, perusahaan hancur. *Mitigasi: pemisahan credential yang keras dan fisik.*
+2. **Kebocoran Konteks:** memakai satu namespace vector database untuk semua agen. Sales agent mulai mengarang arsitektur engineering karena mengambil embedding yang salah. *Mitigasi: isolasi namespace ketat di Pinecone/Chroma.*
+3. **Eksekusi Hantu:** deploy agen sebelum Ledger ada. Agen mengambil action, tapi operator tidak punya dashboard untuk melihat apa yang terjadi. *Mitigasi: Ledger harus menjadi sistem pertama yang dipasang.*
 
 #### Contoh Record: Bootstrap Configuration Schema
 Setiap deployment agen harus didefinisikan sebagai code agar bisa dibuat ulang dan diaudit cepat.

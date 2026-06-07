@@ -18,7 +18,7 @@ Kesalahan umum: menganggap “agen tidak punya wallet” berarti aman. Padahal a
 | Tool spending | token API, model call, data provider, image/video generation | runaway cost, tagihan membesar diam-diam |
 | Subscription change | upgrade SaaS, tambah seat, paid addon | biaya berulang tanpa review |
 | Ads spend | campaign, boosted post, paid acquisition test | burn cepat dan risiko publik |
-| Contractor spend | hire freelancer, approve invoice | sengketa legal/payment |
+| Pengeluaran Kontraktor | hire freelancer, approve invoice | sengketa legal/payment |
 | Refund/credit | refund customer, discount, account credit | revenue leakage |
 | Wallet action | sign transaction, bridge, swap, gas fee | loss irreversible, salah chain/address |
 | x402 payment | pay-per-request service call | microspend bisa menumpuk |
@@ -276,10 +276,10 @@ Kalau biaya tidak terhubung ke output, hentikan.
 
 Setiap failure harus menghasilkan perubahan policy. Kalau cuma “ingatkan agen”, failure akan balik.
 
-## Template Financial Rights
+## Template Hak Finansial
 
 ```text
-Financial Rights Card
+Kartu Hak Finansial
 
 Agent:
 Business loop:

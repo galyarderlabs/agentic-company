@@ -329,10 +329,10 @@ Setiap model perlu revenue loop yang bisa dijalankan agen.
 
 Agen bisa membantu semua langkah, tapi klaim finansial tetap harus lewat review jika memengaruhi customer, billing, legal, atau janji publik.
 
-## Template Desain Model
+## Template Desain Model Bisnis
 
 ```text
-Business Model Card
+Kartu Model Bisnis
 Offer:
 Customer:
 Problem:

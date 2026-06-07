@@ -26,12 +26,12 @@ Ia bisa menyimpan:
 
 Kalau kerja itu penting, ia harus muncul di state perusahaan. Chat saja tidak cukup.
 
-## Task Packet
+## Paket Tugas
 
-Task harus cukup spesifik agar agen bisa bekerja tanpa mengarang konteks bisnis.
+Tugas harus cukup spesifik agar agen bisa bekerja tanpa mengarang konteks bisnis.
 
 ```text
-Task Packet
+Paket Tugas
 
 Title:
 Objective:

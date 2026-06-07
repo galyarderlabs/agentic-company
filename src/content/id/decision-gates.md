@@ -44,12 +44,12 @@ Kalau jawaban pertama ya dan jawaban kedua tidak, action wajib approval.
 
 Default rule: jika action tidak cocok ke matrix, perlakukan sebagai risiko lebih tinggi sampai diklasifikasikan.
 
-## Gate Packet
+## Paket Gate
 
-Setiap action yang butuh approval harus datang sebagai packet, bukan chat kabur.
+Setiap action yang butuh approval harus datang sebagai paket, bukan chat kabur.
 
 ```text
-Gate request
+Permintaan Gate
 Requested by:
 Action class:
 Action summary:
@@ -361,7 +361,7 @@ Keputusan gate tercatat, diuji dengan red-team check, dan terhubung ke ledger. E
 Halaman ini selesai untuk Anda kalau agentic company punya:
 
 - action class matrix;
-- template gate packet;
+- template paket gate;
 - approval verbs;
 - approval scope dan TTL;
 - money gate;

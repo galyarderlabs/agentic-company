@@ -1,4 +1,4 @@
-## Apa yang Halaman Ini Putuskan
+## Apa yang Diputuskan Halaman Ini
 
 Halaman ini menentukan tempat yang tepat untuk setiap jenis memori.
 
@@ -189,12 +189,12 @@ Agen eksekusi boleh mengingat misi, standar, struktur project, dan aturan verifi
 
 Memori yang baik melindungi kontinuitas. Memori yang buruk menjebak seseorang di snapshot lama.
 
-## Template Memory Routing Map
+## Template Peta Routing Memori
 
 Salin ini.
 
 ```text
-Memory Routing Map
+Peta Routing Memori
 
 1. Fakta yang selalu dimuat:
 2. Memori semantik jangka panjang:

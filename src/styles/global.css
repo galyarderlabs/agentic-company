@@ -196,8 +196,8 @@ h1 [data-i18n-en], h1 [data-i18n-id], h2 [data-i18n-en], h2 [data-i18n-id], h3[d
 .brand-logo,
 .mark {
   position: relative;
-  width: 46px;
-  height: 46px;
+  width: 42px;
+  height: 42px;
   display: grid;
   place-items: center;
   border-radius: var(--radius-xs);
@@ -223,7 +223,7 @@ h1 [data-i18n-en], h1 [data-i18n-id], h2 [data-i18n-en], h2 [data-i18n-id], h3[d
 .brand-logo { overflow: hidden; padding: 3px; background: var(--surface); transition: transform .26s var(--ease), box-shadow .26s var(--ease), filter .26s var(--ease); }
 .brand-logo picture,
 .footer-logo picture { display: block; width: 100%; height: 100%; }
-.brand-logo img { display: block; width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; transform: scale(1.08); transform-origin: center; }
+.brand-logo img { display: block; width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; transform: scale(1.05); transform-origin: center; }
 .brand-logo { background: var(--surface); color: var(--ink); box-shadow: inset 0 0 0 1px rgba(20,20,19,.05); }
 .brand-lockup:hover .brand-logo,
 .brand-lockup:hover .mark { transform: translateY(-1px); box-shadow: inset 0 0 0 1px rgba(250,248,239,.2), 0 10px 28px rgba(20,20,19,.11); }
@@ -650,8 +650,8 @@ h1 {
   letter-spacing: -.02em;
 }
 .footer-logo {
-  width: 54px;
-  height: 54px;
+  width: 50px;
+  height: 50px;
   flex: 0 0 auto;
   display: grid;
   place-items: center;
@@ -660,7 +660,7 @@ h1 {
   padding: 3px;
   transition: transform .24s var(--ease), box-shadow .24s var(--ease);
 }
-.footer-logo img { display: block; width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; transform: scale(1.1); transform-origin: center; }
+.footer-logo img { display: block; width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; transform: scale(1.05); transform-origin: center; }
 .foot-brand-lockup:hover .footer-logo { transform: translateY(-1px); box-shadow: 0 12px 28px rgba(20,20,19,.1); }
 .foot-brand p {
   max-width: 42ch;
