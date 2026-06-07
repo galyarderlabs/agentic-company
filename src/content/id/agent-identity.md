@@ -1,10 +1,10 @@
-## Apa yang Halaman Ini Putuskan
+## Apa yang Diputuskan Halaman Ini
 
 Halaman ini mengubah agen dari asisten samar menjadi pekerjaan dengan batas yang jelas.
 
 Jangan mulai dari kepribadian. Mulai dari tanggung jawab. Identitas agen yang serius memberi tahu sistem: apa yang dipegang agen, apa yang boleh dipakai, apa yang tidak boleh dilakukan, apa yang perlu diingat, kapan harus berhenti, dan bukti apa yang harus dikembalikan.
 
-Di akhir halaman ini, Anda seharusnya punya satu Agent Responsibility Contract yang bisa disalin.
+Di akhir halaman ini, Anda seharusnya punya satu Kontrak Tanggung Jawab Agen yang bisa disalin.
 
 ## Identitas Adalah Kontrak Kerja
 
@@ -32,7 +32,7 @@ Bedanya ada di enforceability. Identitas kedua bisa ditinjau, dites, dan diperba
 Gunakan template ini untuk setiap agen serius.
 
 ```text
-Agent Responsibility Contract
+Kontrak Tanggung Jawab Agen
 
 1. Nama:
 2. Tujuan:
@@ -209,7 +209,7 @@ Agen yang aman tahu kapan harus berhenti.
 ## Contoh Terisi: Docs Agent
 
 ```text
-Agent Responsibility Contract
+Kontrak Tanggung Jawab Agen
 
 1. Nama: docs-agent
 2. Tujuan: menjaga halaman panduan publik tetap jelas, selaras sumber, dan aman.

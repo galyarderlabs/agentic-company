@@ -104,14 +104,14 @@ Scaling agentic company berbeda secara fundamental dari scaling produk SaaS. And
 Roadmap dibagi menjadi fase kematangan yang jelas. Pindah fase hanya boleh dilakukan setelah proof gate terpenuhi.
 * **Fase 1: Shadow Workforce.** Agen bekerja, tetapi operator manusia masih menyalin, menempel, dan mengeksekusi tindakan akhir secara manual. *Tujuan: validasi baseline capability.*
 * **Fase 2: Human-in-the-Loop (HITL) Execution.** Agen menyiapkan payload dan mengantrekan API call. Operator manusia klik “Approve.” *Tujuan: integrasi workflow dan penurunan latensi.*
-* **Fase 3: Bounded Autonomy.** Agen mengeksekusi secara otonom di dalam matriks policy yang ketat, misalnya transaksi di bawah $50. *Tujuan: menaikkan volume tanpa menaikkan risiko sebanding.*
+* **Fase 3: Otonomi Terbatas.** Agen mengeksekusi secara otonom di dalam matriks policy yang ketat, misalnya transaksi di bawah $50. *Tujuan: menaikkan volume tanpa menaikkan risiko sebanding.*
 * **Fase 4: Algorithmic Oversight.** Operator manusia keluar dari approval rutin. Overseer agent mengaudit worker agent. Manusia hanya menangani exception. *Tujuan: leverage eksponensial untuk 1-Man Army.*
 * **Fase 5: Agent-to-Agent Commerce.** Fleet Anda langsung bernegosiasi, membuat kontrak, dan bertransaksi dengan fleet vendor eksternal pada kecepatan mesin. *Tujuan: integrasi ekonomi level protokol.*
 
 #### Proof Gate untuk Naik Fase Roadmap
 Anda tidak bisa naik fase hanya karena kode sudah ditulis. Proof Gate harus terpenuhi.
 * **Gate masuk Fase 2 (HITL):** sistem harus menunjukkan akurasi 99% saat menyusun payload API di 500 event tes berturut-turut.
-* **Gate masuk Fase 3 (Bounded Autonomy):** Ledger harus beroperasi penuh, dan red-team “Bypass Drill” harus gagal menembus batas transaksi $50.
+* **Gate masuk Fase 3 (Otonomi Terbatas):** Ledger harus beroperasi penuh, dan red-team “Drill Bypass” harus gagal menembus batas transaksi $50.
 * **Gate masuk Fase 4 (Algorithmic Oversight):** Overseer agent harus berhasil mengidentifikasi dan mengarantina 100% “bad actions” sintetis selama shadow run 14 hari.
 
 #### Taksonomi Kegagalan Saat Scaling
@@ -127,7 +127,7 @@ Membangun tool MCP custom untuk agen itu mahal. Operator harus memprioritaskan s
 | **Triage email support masuk** | 100x / Hari | 4 Jam / Hari | **SETUJUI.** Bangun tool MCP Zendesk. |
 | **Negosiasi harga vendor API** | 1x / Tahun | 5 Jam | **TOLAK.** Risiko terlalu tinggi, frekuensi terlalu rendah. |
 
-#### Contoh Catatan: Template PRD Capability
+#### Contoh Catatan: Template Spesifikasi PRD
 Sebelum menambah capability baru ke fleet, operator menulis Product Requirements Document (PRD) yang ketat dan bisa dibaca agen.
 ```markdown
 # Agent Capability: Invoice Generation

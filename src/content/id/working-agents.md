@@ -136,9 +136,9 @@ Retirement condition: error rate tinggi dua siklus berturut-turut atau loop tida
 
 Kontrak seperti ini membuat agen bisa diperiksa tanpa menebak maksudnya.
 
-## Output Contract
+## Kontrak Output
 
-Output contract adalah definisi “done”. Kalau output contract lemah, manusia akan menjadi quality system tersembunyi.
+Kontrak output adalah definisi “done”. Kalau kontrak output lemah, manusia akan menjadi quality system tersembunyi.
 
 | Jenis kerja | Output lemah | Output yang bisa dipakai |
 |---|---|---|
@@ -150,10 +150,10 @@ Output contract adalah definisi “done”. Kalau output contract lemah, manusia
 | Product | “bug mungkin di sini” | repro steps, suspected cause, test target, patch proposal |
 | Review | “aman” | pass/fail checklist, required changes, evidence inspected |
 
-Output contract harus punya lima bagian:
+Kontrak output harus punya lima bagian:
 
 1. format yang harus keluar;
-2. lokasi penyimpanan atau destination;
+2. lokasi penyimpanan atau tujuan;
 3. bukti sumber;
 4. verifikasi yang dijalankan;
 5. keputusan berikutnya.
@@ -191,21 +191,21 @@ Loop dasar:
 
 Loop ini harus membosankan. Memang itu tujuannya. Agen yang bisa mengulang loop yang sama dengan proof lebih berharga daripada agen yang setiap hari menemukan cara baru untuk terlihat pintar.
 
-## Handoff Packet
+## Paket Handoff
 
 Handoff antar-agen harus pendek dan bisa diverifikasi. Jangan izinkan agen saling mengirim monolog panjang tanpa status kerja.
 
 ```text
-From:
-To:
-Purpose:
-Input attached:
-Decision needed:
-Allowed action:
-Forbidden action:
-Proof required:
-Deadline:
-Return path:
+Dari:
+Untuk:
+Tujuan:
+Input terlampir:
+Keputusan yang dibutuhkan:
+Tindakan yang diizinkan:
+Tindakan yang dilarang:
+Bukti yang diperlukan:
+Batas waktu:
+Jalur pengembalian:
 ```
 
 Contoh:
@@ -294,12 +294,12 @@ Pensiunkan atau gabungkan agen jika:
 
 Agen bukan identitas sakral. Agen adalah alat kerja. Kalau tidak menghasilkan bukti, hapus atau redesign.
 
-## Template Roster
+## Template Daftar Agen
 
-Copy ini untuk mulai.
+Salin ini untuk mulai.
 
 ```text
-Working Agent Roster
+Daftar Agen Kerja
 
 Company loop:
 Owner:

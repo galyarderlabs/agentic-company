@@ -154,12 +154,12 @@ Support agent sebaiknya read-mostly.
 
 Kalau support agent butuh eksekusi, ia route ke execution agent. Ia tidak meminjam execution tool.
 
-## Template Support Agent Protocol
+## Template Protokol Agen Support
 
 Salin ini.
 
 ```text
-Support Agent Protocol
+Protokol Agen Support
 
 1. Purpose:
 2. State signals:
