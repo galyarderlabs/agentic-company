@@ -4,7 +4,7 @@ Halaman ini mendefinisikan execution agent: agen yang mengubah niat menjadi outp
 
 Execution agent bukan asisten motivasi. Ia adalah jembatan tekanan antara tujuan manusia dan artefak yang selesai. Ia menantang rencana lemah, memecah kerja, merutekan task, memverifikasi hasil, menjaga approval gate, dan melaporkan bukti.
 
-Di akhir halaman ini, Anda harus punya Execution Agent Contract: apa yang boleh ia tantang, apa yang boleh ia eksekusi, kapan ia harus merutekan kerja, dan bukti apa yang harus ia kembalikan.
+Di akhir halaman ini, Anda harus punya Kontrak Agen Eksekusi: apa yang boleh ia tantang, apa yang boleh ia eksekusi, kapan ia harus merutekan kerja, dan bukti apa yang harus ia kembalikan.
 
 ## Tugasnya
 
@@ -158,12 +158,12 @@ Approve with:
 
 Action sensitif tanpa approval packet berarti sistem eksekusinya rusak.
 
-## Execution Agent Contract
+## Kontrak Agen Eksekusi
 
 Salin ini.
 
 ```text
-Execution Agent Contract
+Kontrak Agen Eksekusi
 
 1. Purpose:
 2. Work it may execute directly:

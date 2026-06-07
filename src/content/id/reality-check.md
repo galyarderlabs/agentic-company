@@ -1,4 +1,4 @@
-## Apa yang Halaman Ini Putuskan
+## Apa yang Diputuskan Halaman Ini
 
 Halaman ini memisahkan agentic software yang berguna dari agentic company yang benar-benar dimiliki dan dikendalikan.
 

@@ -1,4 +1,4 @@
-## Company Maintenance dan Operational Health
+## Pemeliharaan Perusahaan dan Kesehatan Operasional
 
 Membangun agentic company hanya 20% dari pekerjaan. Sisa 80% adalah mengoperasikannya. Setup bukan garis akhir; perusahaan berisi agen AI akan membusuk diam-diam dan cepat tanpa review yang disiplin.
 
@@ -16,39 +16,39 @@ Jika dibiarkan tanpa maintenance, agentic company akan mengalami:
 
 Untuk mencegah ini, Anda harus membuat ritme operasional.
 
-### Daily Pulse
+### Pulse Harian
 
 Daily Pulse butuh 5 menit. Tujuannya hanya membuka blocker eksekusi, menangkap failure mendesak, dan mengotorisasi kerja tertunda. Jangan debug arsitektur saat daily pulse; cukup pastikan sistem tetap menyala.
 
-**Daily Checklist:**
+**Daftar Periksa Harian:**
 - [ ] **Service Health**: apakah runtime inti dan provider LLM online? Apakah gateway Discord/CLI merespons?
 - [ ] **Pending Approvals**: bersihkan Airlock. Review dan approve/reject decision gate untuk action finansial, destruktif, atau publik.
 - [ ] **Failed Jobs**: cek ledger untuk crash keras. Apakah agen gagal parse dokumen? Apakah eksekusi tool timeout?
 - [ ] **Session Alerts**: apakah ada akun milik agen yang logout atau ditandai sistem anti-bot?
 - [ ] **Spend Check**: apakah spend API dan wallet kemarin masih dalam batas operasi normal?
 
-### Weekly Review
+### Tinjauan Mingguan
 
 Weekly Review butuh 30-60 menit. Tujuannya quality control, koreksi arah, dan optimasi sistem. Anda bergeser dari operator menjadi manager.
 
-**Weekly Checklist:**
+**Daftar Periksa Mingguan:**
 - [ ] **Stale Tasks**: apakah ada issue yang berhari-hari diam di “In Progress”? Lepaskan, assign ulang, atau hapus.
 - [ ] **Output Quality QA**: spot-check kerja agen. Apakah `content-agent` terdengar terlalu robotik minggu ini? Apakah `research-agent` melewatkan data jelas? Beri feedback.
 - [ ] **Memory Pruning**: koreksi asumsi palsu yang dibuat agen. Update file konteks kanonis jika strategi perusahaan berubah.
 - [ ] **Skill Patching**: cari tool failure yang berulang. Update file Markdown `.skill` spesifik agar agen belajar syntax baru atau workaround.
 - [ ] **Documentation Sync**: apakah docs internal masih cocok dengan realitas operasi perusahaan? Jika tidak, update.
 
-### Monthly Access Audit
+### Audit Akses Bulanan
 
 Monthly Audit fokus pada keamanan, penurunan risiko, dan hygiene finansial. Agen cepat sekali menumpuk permission. Anda harus agresif memangkasnya.
 
-**Monthly Checklist:**
+**Daftar Periksa Bulanan:**
 - [ ] **Access Pruning**: akun mana yang masih benar-benar butuh akses agen? Revoke OAuth grant dan hapus API key yang tidak dipakai 30 hari.
 - [ ] **Credential Rotation**: rotate password dan access token untuk infrastruktur kritis.
 - [ ] **Financial Limits**: apakah limit kartu perusahaan atau crypto wallet masih sesuai kebutuhan bisnis? Turunkan jika workload agen berkurang.
 - [ ] **Recovery Paths**: pastikan disaster recovery code dan seed phrase tersimpan aman secara offline, dan proses recovery dipahami tetapi tidak terekspos ke agen.
 
-### Quarterly Strategy Review
+### Tinjauan Strategi Kuartalan
 
 Setiap kuartal, mundur dari implementasi teknis dan nilai perusahaan sebagai pemilik bisnis.
 
